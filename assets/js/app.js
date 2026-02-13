@@ -3,6 +3,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const form = document.getElementById("productForm");
 
+    loadCategories();
+
     form.addEventListener("submit", async (e) => {
         e.preventDefault();
 
@@ -75,4 +77,20 @@ function checkStock(stock) {
     } else {
         alert("Habis");
     }
+}
+
+async function loadCategories() {
+    const response = await fetch("api/category.php");
+    const result = await response.json();
+
+    const select = document.getElementById("category_id");
+    select.innerHTML = '<option value="">Select Category</option>';
+
+    result.data.forEach(cat => {
+        select.innerHTML += `
+            <option value="${cat.id}">
+                ${cat.name_category}
+            </option>
+        `;
+    });
 }

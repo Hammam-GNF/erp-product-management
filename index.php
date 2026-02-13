@@ -49,7 +49,9 @@
                 <form id="productForm">
                     <div class="mb-3">
                         <label class="form-label">Category ID</label>
-                        <input type="number" class="form-control" id="category_id" required>
+                        <select class="form-select" id="category_id" required>
+                            <option value="">Select Category</option>
+                        </select>
                     </div>
 
                     <div class="mb-3">
