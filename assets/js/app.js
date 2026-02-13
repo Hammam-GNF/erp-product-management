@@ -28,6 +28,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
             if (result.status === "success") {
                 alert("Product added successfully");
+                const modal = bootstrap.Modal.getInstance(document.getElementById("productModal"));
+                modal.hide();
                 form.reset();
                 loadProducts();
             } else {
@@ -54,10 +56,13 @@ async function loadProducts() {
                     <td>${product.id}</td>
                     <td>${product.name_product}</td>
                     <td>${product.name_category}</td>
-                    <td>${product.price}</td>
+                    <td>Rp ${Number(product.price).toLocaleString()}</td>
                     <td>${product.stock}</td>
                     <td>
-                        <button class="btn btn-sm btn-info"
+                        ${product.stock > 0 
+                            ? '<span class="badge bg-success">Tersedia</span>' 
+                            : '<span class="badge bg-danger">Habis</span>'}
+                        <button class="btn btn-sm btn-info ms-2"
                             onclick="checkStock(${product.stock})">
                             Cek Status
                         </button>
